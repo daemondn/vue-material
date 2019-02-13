@@ -73,11 +73,12 @@
       mdInputName: String,
       mdInputId: String,
       mdInputMaxlength: [String, Number],
-      mdInputPlaceholder: [String, Number]
+      mdInputPlaceholder: [String, Number],
+      mdValueTextField: String
     },
     data () {
       return {
-        searchTerm: this.value,
+        searchTerm: (this.mdValueTextField && this.value) ? this.value[this.mdValueTextField] : this.value,
         showMenu: false,
         triggerPopover: false,
         isPromisePending: false,
@@ -141,7 +142,7 @@
       },
 
       value (val) {
-        this.searchTerm = val
+        this.searchTerm = (this.mdValueTextField && val) ? val[this.mdValueTextField] || val : val
       }
     },
     methods: {
@@ -214,7 +215,7 @@
         })
       },
       selectItem (item, $event) {
-        const content = $event.target.textContent.trim()
+        const content = this.mdValueTextField ? item[this.mdValueTextField] : $event.target.textContent.trim()
 
         this.searchTerm = content
         this.$emit('input', item)
