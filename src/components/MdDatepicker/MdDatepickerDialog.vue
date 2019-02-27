@@ -1,6 +1,6 @@
 <template>
   <md-popover :md-settings="popperSettings" md-active>
-    <transition name="md-datepicker-dialog" appear @enter="setContentStyles" @after-leave="resetDate">
+    <transition name="md-datepicker-dialog" appear @after-enter="setContentStyles" @after-leave="resetDate">
       <div class="md-datepicker-dialog" :class="[$mdActiveTheme]">
         <div class="md-datepicker-header">
           <span class="md-datepicker-year-select" :class="{ 'md-selected': currentView === 'year' }" @click="currentView = 'year'">{{ selectedYear }}</span>
@@ -79,7 +79,7 @@
           </div>
 
           <md-dialog-actions class="md-datepicker-body-footer">
-            <md-button class="md-primary" @click="onCancel">Cancel</md-button>
+            <md-button class="md-primary" @click="onCancel">Отмена</md-button>
             <md-button v-if="!mdImmediately" class="md-primary" @click="onConfirm">Ok</md-button>
           </md-dialog-actions>
         </div>

@@ -1,5 +1,5 @@
 /*!
- * vue-material v1.0.0-beta-10.3
+ * vue-material v1.0.0-beta-10.4
  * Made with <3 by marcosmoura 2019
  * Released under the MIT License.
  */
@@ -5915,6 +5915,10 @@ exports.default = {
     MdDebounce: {
       type: Number,
       default: 1000
+    },
+    mdClearable: {
+      type: Boolean,
+      default: true
     }
   },
   data: function data() {
@@ -6072,6 +6076,9 @@ exports.default = {
       } else {
         _vue2.default.util.warn('The datepicker value is not a valid date. Given value: ' + this.value);
       }
+    },
+    onClear: function onClear() {
+      this.$emit('md-clear');
     }
   },
   created: function created() {
@@ -26536,7 +26543,10 @@ var render = function() {
         "transition",
         {
           attrs: { name: "md-datepicker-dialog", appear: "" },
-          on: { enter: _vm.setContentStyles, "after-leave": _vm.resetDate }
+          on: {
+            "after-enter": _vm.setContentStyles,
+            "after-leave": _vm.resetDate
+          }
         },
         [
           _c(
@@ -26870,7 +26880,7 @@ var render = function() {
                           staticClass: "md-primary",
                           on: { click: _vm.onCancel }
                         },
-                        [_vm._v("Cancel")]
+                        [_vm._v("Отмена")]
                       ),
                       _vm._v(" "),
                       !_vm.mdImmediately
@@ -27051,7 +27061,8 @@ var render = function() {
     "md-field",
     {
       class: ["md-datepicker", { "md-native": !this.mdOverrideNative }],
-      attrs: { "md-clearable": "" }
+      attrs: { "md-clearable": _vm.mdClearable },
+      on: { "md-clear": _vm.onClear }
     },
     [
       _c("md-date-icon", {
