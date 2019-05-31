@@ -3178,6 +3178,8 @@ exports.default = {
     },
 
     value: function value(val) {
+      console.log('MdAutocomplete: watch val:');
+      console.log(val);
       this.searchTerm = this.mdValueTextField && val ? val[this.mdValueTextField] || val : val;
     }
   },
