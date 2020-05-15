@@ -379,7 +379,7 @@
   @import "~components/MdAnimation/variables";
 
   .md-table {
-    display: flex;
+    /* display: flex;   fix for IE11 */
     flex-flow: column wrap;
     overflow-x: auto;
 
